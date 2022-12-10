@@ -1,0 +1,11 @@
+.board {
+    width: 500px;
+    height: 500px;
+    display: grid;
+    margin: 0 auto;
+}
+
+.cell {
+    background-color: blueviolet;
+    border: 1px solid black;
+}
