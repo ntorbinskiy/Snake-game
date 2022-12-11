@@ -4,9 +4,9 @@ export const state: State = {
     gridWidth: 5,
     gridHeight: 5,
     direction: undefined,
-    snakeBody: [{ x: 8, y: 5 }],
-    snakeHead: { x: 5, y: 5 },
+    snakeBody: [{ bodyX: 8, bodyY: 5 }],
+    snakeHead: { headX: 4, headY: 3 },
     gameOver: false,
-    cherry: { x2: 5, y2: 5 },
+    cherry: { cherryX: 5, cherryY: 5 },
     teleportSnake: false,
 };

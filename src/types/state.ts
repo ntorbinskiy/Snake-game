@@ -2,15 +2,15 @@ export interface State {
     gridWidth: number;
     gridHeight: number;
     direction: undefined | string;
-    snakeHead: { x: number; y: number };
+    snakeHead: { headX: number; headY: number };
     snakeBody: Array<Object>;
     gameOver: boolean;
-    cherry: { x2: number; y2: number };
+    cherry: { cherryX: number; cherryY: number };
     teleportSnake: boolean;
 }
 export interface CellProps {
-    x: number;
-    y: number;
+    cellX: number;
+    cellY: number;
 }
 export interface CellsProps {
     gridHeight: number;
