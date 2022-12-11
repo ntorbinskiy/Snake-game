@@ -3,19 +3,18 @@ import { state } from "../../state/state";
 import { SnakeHeadProps } from "../../types/state";
 import "./Snake.css";
 
-const SnakeHead = () => {
-    const cell = document.querySelector("div.cell");
+export const SnakeHead = () => {
     return (
         <div
             className="snake-head"
             style={{
-                height: `${cell?.clientHeight}px`,
-                width: `${cell?.clientWidth}px`,
+                height: `${state.gridHeight * 10}px`,
+                width: `${state.gridWidth * 10}px`,
             }}
         ></div>
     );
 };
-const SnakeBody = () => {
+export const SnakeBody = () => {
     const cell = document.querySelector("div.cell");
     return (
         <div
@@ -27,13 +26,3 @@ const SnakeBody = () => {
         ></div>
     );
 };
-const Snake = () => {
-    return (
-        <>
-            <SnakeHead />
-            <SnakeBody />
-        </>
-    );
-};
-
-export default Snake;
