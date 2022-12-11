@@ -1,7 +1,6 @@
 export interface State {
     gridWidth: number;
     gridHeight: number;
-    cellSize: number;
     direction: undefined | string;
     snakeHead: { x: number; y: number };
     snakeBody: Array<Object>;

@@ -22,8 +22,8 @@ const Board = () => {
         <div
             className="board"
             style={{
-                gridTemplateColumns: ` repeat(${state.gridHeight}, ${state.cellSize}px)`,
-                gridTemplateRows: ` repeat(${state.gridWidth}, ${state.cellSize})px`,
+                gridTemplateColumns: ` repeat(${state.gridHeight}, 1fr)`,
+                gridTemplateRows: ` repeat(${state.gridWidth}, 1fr)px`,
             }}
         >
             <Cells gridHeight={state.gridHeight} gridWidth={state.gridWidth} />
