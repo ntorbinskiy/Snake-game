@@ -1,4 +1,8 @@
 .snake-head {
-    background-color: brown;
+    background-color: rgb(197, 105, 105);
+    border-radius: 10px;
+}
+.snake-body {
+    background-color: lightgreen;
     border-radius: 10px;
 }

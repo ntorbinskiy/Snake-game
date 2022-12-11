@@ -1,16 +1,39 @@
 import React from "react";
+import { state } from "../../state/state";
+import { SnakeHeadProps } from "../../types/state";
 import "./Snake.css";
 
-interface SnakeHeadProps {
-    snakeHead: { x: number; y: number };
-}
-const SnakeHead = ({ snakeHead }: SnakeHeadProps) => {
-    const { x, y } = snakeHead;
-    return <div className="snake-head" style={{}}></div>;
+const SnakeHead = () => {
+    const cell = document.querySelector("div.cell");
+    return (
+        <div
+            className="snake-head"
+            style={{
+                height: `${cell?.clientHeight}px`,
+                width: `${cell?.clientWidth}px`,
+            }}
+        ></div>
+    );
 };
-
+const SnakeBody = () => {
+    const cell = document.querySelector("div.cell");
+    return (
+        <div
+            className="snake-body"
+            style={{
+                height: `${cell?.clientHeight}px`,
+                width: `${cell?.clientWidth}px`,
+            }}
+        ></div>
+    );
+};
 const Snake = () => {
-    return <div></div>;
+    return (
+        <>
+            <SnakeHead />
+            <SnakeBody />
+        </>
+    );
 };
 
 export default Snake;
