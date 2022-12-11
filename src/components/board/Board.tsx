@@ -1,13 +1,13 @@
-import React from "react";
 import "./Board.css";
 import { CellProps, CellsProps } from "../../types/state";
 import { state } from "../../state/state";
-import Snake from "../Snake/Snake";
+import { SnakeHead } from "../Snake/Snake";
 
-const Cell = ({ x, y }: CellProps) => {
+const Cell = ({ cellX, cellY }: CellProps) => {
+    const { headX, headY } = state.snakeHead;
     return (
         <div className="cell">
-            <Snake />
+            {cellX === headX && cellY === headY ? <SnakeHead /> : null}
         </div>
     );
 };
@@ -16,7 +16,7 @@ const Cells = ({ gridHeight, gridWidth }: CellsProps) => {
     const result = [];
     for (let y = 0; y < gridWidth; y++) {
         for (let x = 0; x < gridHeight; x++) {
-            result.push(<Cell key={`${x}_${y}`} x={x} y={y}></Cell>);
+            result.push(<Cell key={`${x}_${y}`} cellX={x} cellY={y}></Cell>);
         }
     }
     return <>{result}</>;
