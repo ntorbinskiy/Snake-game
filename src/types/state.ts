@@ -16,3 +16,7 @@ export interface CellsProps {
     gridHeight: number;
     gridWidth: number;
 }
+export interface SnakeHeadProps {
+    gridWidth: number;
+    gridHeight: number;
+}
