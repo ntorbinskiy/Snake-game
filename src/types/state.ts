@@ -1,9 +1,13 @@
+interface SnakeBody {
+    bodyX: number;
+    bodyY: number;
+}
+
 export interface State {
     gridWidth: number;
     gridHeight: number;
     direction: undefined | string;
-    snakeHead: { headX: number; headY: number };
-    snakeBody: Array<Object>;
+    snakeBody: Array<SnakeBody>;
     gameOver: boolean;
     cherry: { cherryX: number; cherryY: number };
     teleportSnake: boolean;
@@ -19,4 +23,11 @@ export interface CellsProps {
 export interface SnakeHeadProps {
     gridWidth: number;
     gridHeight: number;
+}
+
+export interface movementKeys {
+    UP: "38";
+    DOWN: "40";
+    LEFT: "37";
+    RIGHT: "39";
 }

@@ -4,10 +4,10 @@ import { state } from "../../state/state";
 import { SnakeHead } from "../Snake/Snake";
 
 const Cell = ({ cellX, cellY }: CellProps) => {
-    const { headX, headY } = state.snakeHead;
+    const { bodyX, bodyY } = state.snakeBody[0];
     return (
         <div className="cell">
-            {cellX === headX && cellY === headY ? <SnakeHead /> : null}
+            {cellX === bodyX && cellY === bodyY ? <SnakeHead /> : null}
         </div>
     );
 };
