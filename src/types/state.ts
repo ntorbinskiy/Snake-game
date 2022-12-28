@@ -27,8 +27,8 @@ export interface SnakeHeadProps {
 }
 
 export interface movementKeys {
-    UP: "38";
-    DOWN: "40";
-    LEFT: "37";
-    RIGHT: "39";
+    ArrowUp: "UP";
+    ArrowDown: "DOWN";
+    ArrowLeft: "LEFT";
+    ArrowRight: "RIGHT";
 }
