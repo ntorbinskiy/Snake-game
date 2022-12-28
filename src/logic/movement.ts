@@ -7,9 +7,39 @@ const movementKeyCodes: movementKeys = {
     LEFT: "37",
     RIGHT: "39",
 };
+const movementDirectionKeys = {};
 
-const moveSnake = (event: KeyboardEvent) => {
-    if (event.key === "UP") {
-        return { ...state };
+export const moveSnake = (event: Event) => {
+    const { UP, DOWN, LEFT, RIGHT } = movementKeyCodes;
+    if (!(event instanceof KeyboardEvent)) {
+        return;
     }
+
+    const key = event.key;
+
+    if (key === UP) {
+        return state.snakeBody.map((bodyItem) => {
+            return bodyItem.bodyY - 1;
+        });
+    }
+
+    if (key === DOWN) {
+        return state.snakeBody.map((bodyItem) => {
+            return bodyItem.bodyY + 1;
+        });
+    }
+
+    if (key === LEFT) {
+        return state.snakeBody.map((bodyItem) => {
+            return bodyItem.bodyX - 1;
+        });
+    }
+
+    if (key === RIGHT) {
+        return state.snakeBody.map((bodyItem) => {
+            return bodyItem.bodyX - 1;
+        });
+    }
+
+    return state;
 };
