@@ -1,41 +1,33 @@
 import { state } from "../state/state";
-import { movementKeys } from "../types/state";
+import { movementKeys, State } from "../types/state";
 
-const movementKeyCodes: movementKeys = {
-    UP: "38",
-    DOWN: "40",
-    LEFT: "37",
-    RIGHT: "39",
-};
-const movementDirectionKeys = {};
+const UP = "UP";
+const DOWN = "DOWN";
+const LEFT = "LEFT";
+const RIGHT = "RIGHT";
 
-export const moveSnake = (event: Event) => {
-    const { UP, DOWN, LEFT, RIGHT } = movementKeyCodes;
-    if (!(event instanceof KeyboardEvent)) {
-        return;
-    }
+export const moveSnake = (state: State) => {
+    const direction = state.direction;
 
-    const key = event.key;
-
-    if (key === UP) {
+    if (direction === UP) {
         return state.snakeBody.map((bodyItem) => {
             return bodyItem.bodyY - 1;
         });
     }
 
-    if (key === DOWN) {
+    if (direction === DOWN) {
         return state.snakeBody.map((bodyItem) => {
             return bodyItem.bodyY + 1;
         });
     }
 
-    if (key === LEFT) {
+    if (direction === LEFT) {
         return state.snakeBody.map((bodyItem) => {
             return bodyItem.bodyX - 1;
         });
     }
 
-    if (key === RIGHT) {
+    if (direction === RIGHT) {
         return state.snakeBody.map((bodyItem) => {
             return bodyItem.bodyX - 1;
         });
