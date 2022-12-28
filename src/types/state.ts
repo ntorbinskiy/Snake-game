@@ -19,6 +19,7 @@ export interface CellProps {
 export interface CellsProps {
     gridHeight: number;
     gridWidth: number;
+    state: State;
 }
 export interface SnakeHeadProps {
     gridWidth: number;
