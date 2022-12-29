@@ -24,19 +24,47 @@ const CHERRY = "CHERRY";
 const BODY = "BODY";
 const CELL = "CELL";
 
-// const getSnakeBodyIndex = (state: State, cellX: number, cellY: number) => {
-//     const snakeBody = state.snake.body;
-// };
+const getSnakeBodyIndex = (state: State, cellX: number, cellY: number) => {
+    const { body } = state.snake;
 
-const getCellType = (state: State, cellX: number, cellY: number) => {
+    for (let i = 0; i < body.length; i++) {
+        if (body[i]?.x === cellX && body[i]?.y === cellY) {
+            return i;
+        }
+    }
+
+    return -1;
+};
+
+const getCherryIndex = (state: State, cellX: number, cellY: number) => {
+    const { cherries } = state;
+
+    for (let i = 0; i < cherries.length; i++) {
+        if (cherries[i]?.x === cellX && cherries[i]?.y === cellY) {
+            return i;
+        }
+    }
+
+    return -1;
+};
+
+const getCellType = (state: State, cellX: number, cellY: number): CellType => {
     const { x, y } = state.snake.head;
+    const snakeBodyIndex = getSnakeBodyIndex(state, cellX, cellY);
+    const cherryIndex = getCherryIndex(state, cellX, cellY);
+
     if (x === cellX && y === cellY) {
         return HEAD;
     }
 
-    for (let i = 0; i < state.snake.body.length; i++) {
-        // const { x, y } = state.snake.body[i];
+    if (snakeBodyIndex > -1) {
+        return BODY;
     }
+
+    if (cherryIndex > -1) {
+        return CHERRY;
+    }
+
     return CELL;
 };
 
