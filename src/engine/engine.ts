@@ -1,4 +1,11 @@
-import { EventTypes, Reducer, Initializer, Direction } from "./state";
+import {
+    EventTypes,
+    Reducer,
+    Initializer,
+    Direction,
+    SnakeBodyItem,
+    Snake,
+} from "./state";
 
 function absurd(val: never): never {
     throw new Error("");
@@ -8,7 +15,7 @@ export const createInitialState: Initializer = (options) => {
     return {
         options,
         direction: Direction.None,
-        snakeBody: {
+        snake: {
             head: { x: 1, y: 2 },
             body: [{ x: 2, y: 2 }],
         },
@@ -17,62 +24,77 @@ export const createInitialState: Initializer = (options) => {
     };
 };
 
+const getNewSnakePosition = (
+    newHead: SnakeBodyItem,
+    currentSnake: Snake
+): Snake => {
+    return {
+        head: newHead,
+        body: [currentSnake.head, ...currentSnake.body.slice(1)],
+    };
+};
+
 export const reduceGameEvents: Reducer = (state, event) => {
-    const { head, body } = state.snakeBody;
+    const { head, body } = state.snake;
     const { x, y } = head;
 
     switch (event.type) {
         case EventTypes.KeyArrowDown: {
             return {
                 ...state,
-                snakeBody: {
-                    head: {
+                snake: getNewSnakePosition(
+                    {
                         y: y + 1,
                         x,
                     },
-                    body,
-                },
+                    state.snake
+                ),
             };
         }
+
         case EventTypes.KeyArrowUp: {
             return {
                 ...state,
-                snakeBody: {
-                    head: {
+                snake: getNewSnakePosition(
+                    {
                         y: y - 1,
                         x,
                     },
-                    body,
-                },
+                    state.snake
+                ),
             };
         }
+
         case EventTypes.KeyArrowLeft: {
             return {
                 ...state,
-                snakeBody: {
-                    head: {
+                snake: getNewSnakePosition(
+                    {
                         x: x - 1,
                         y,
                     },
-                    body,
-                },
+                    state.snake
+                ),
             };
         }
+
         case EventTypes.KeyArrowRight: {
             return {
                 ...state,
-                snakeBody: {
-                    head: {
+                snake: getNewSnakePosition(
+                    {
                         x: x + 1,
                         y,
                     },
-                    body,
-                },
+                    state.snake
+                ),
             };
         }
+
         case EventTypes.Tick: {
             return { ...state };
         }
+
         default:
             return absurd(event);
     }
