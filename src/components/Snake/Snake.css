@@ -1,3 +1,8 @@
+.snake {
+    height: 100%;
+    width: 100%;
+}
+
 .snake-head {
     background-color: rgb(197, 105, 105);
     border-radius: 100%;
