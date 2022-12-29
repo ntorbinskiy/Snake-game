@@ -20,7 +20,7 @@ export const createInitialState: Initializer = (options) => {
             body: [{ x: 2, y: 2 }],
         },
         gameOver: false,
-        cherries: [{ x: 3, y: 5 }],
+        cherries: [{ x: 3, y: 2 }],
     };
 };
 
