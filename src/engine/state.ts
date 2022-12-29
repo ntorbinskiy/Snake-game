@@ -31,7 +31,7 @@ export type GameOptions = {
 export interface State {
     readonly options: GameOptions;
     readonly direction: Direction;
-    readonly snakeBody: Snake;
+    readonly snake: Snake;
     readonly gameOver: boolean;
     readonly cherries: readonly Cherry[];
 }
