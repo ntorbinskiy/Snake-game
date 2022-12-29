@@ -1,13 +1,21 @@
 import "./Board.css";
-import { CellsProps, State } from "../../types/state";
+import { State } from "../../engine/state";
 import { SnakeHead, SnakeBody } from "../Snake/Snake";
 import Cherry from "../Cherry/Cherry";
 
-interface CellType {
-    type: "HEAD" | "CHERRY" | "BODY" | "CELL";
+type CellType = "HEAD" | "CHERRY" | "BODY" | "CELL";
+
+interface CellTypeArguments {
+    type: CellType;
 }
 
-interface BoardType {
+interface BoardProps {
+    state: State;
+}
+
+interface CellsProps {
+    gridHeight: number;
+    gridWidth: number;
     state: State;
 }
 
@@ -16,34 +24,23 @@ const CHERRY = "CHERRY";
 const BODY = "BODY";
 const CELL = "CELL";
 
-const getSnakeBody = (state: State, x: number, y: number) => {
-    const snakeBody = state.snakeBody;
-    for (let i = 0; i < snakeBody.length; i++) {
-        const { bodyX, bodyY } = snakeBody[i];
-        if (bodyX === x && bodyY === y) {
-            return i;
-        }
-    }
+// const getSnakeBodyIndex = (state: State, cellX: number, cellY: number) => {
+//     const snakeBody = state.snake.body;
+// };
 
-    return -1;
-};
-
-const getCellType = (state: State, x: number, y: number) => {
-    const index = getSnakeBody(state, x, y);
-    const { cherryX, cherryY } = state.cherry;
-    if (index === 0) {
+const getCellType = (state: State, cellX: number, cellY: number) => {
+    const { x, y } = state.snake.head;
+    if (x === cellX && y === cellY) {
         return HEAD;
     }
-    if (index > 0) {
-        return BODY;
-    }
-    if (cherryX === x && cherryY === y) {
-        return CHERRY;
+
+    for (let i = 0; i < state.snake.body.length; i++) {
+        // const { x, y } = state.snake.body[i];
     }
     return CELL;
 };
 
-const getCellContent = (type: "HEAD" | "CHERRY" | "BODY" | "CELL") => {
+const getCellContent = (type: CellType) => {
     if (type === CHERRY) {
         return <Cherry />;
     }
@@ -56,7 +53,7 @@ const getCellContent = (type: "HEAD" | "CHERRY" | "BODY" | "CELL") => {
     return null;
 };
 
-const Cell = ({ type }: CellType) => {
+const Cell = ({ type }: CellTypeArguments) => {
     const cellContent = getCellContent(type);
 
     return <div className="cell">{cellContent}</div>;
@@ -74,22 +71,19 @@ const Cells = ({ gridHeight, gridWidth, state }: CellsProps) => {
     return <>{result}</>;
 };
 
-const Board = ({ state }: BoardType) => {
+const Board = ({ state }: BoardProps) => {
+    const { gridHeight, gridWidth } = state.options;
     return (
         <div
             className="board"
             style={{
-                gridTemplateColumns: ` repeat(${state.gridHeight}, ${
-                    state.gridWidth / state.gridHeight
-                }fr)`,
-                gridTemplateRows: ` repeat(${state.gridWidth}, ${
-                    state.gridWidth / state.gridHeight
-                }fr)`,
+                gridTemplateColumns: ` repeat(${gridHeight}, 1fr)`,
+                gridTemplateRows: ` repeat(${gridWidth}, 1fr)`,
             }}
         >
             <Cells
-                gridHeight={state.gridHeight}
-                gridWidth={state.gridWidth}
+                gridHeight={gridHeight}
+                gridWidth={gridWidth}
                 state={state}
             />
         </div>
