@@ -7,10 +7,6 @@ import {
     Snake,
 } from "./state";
 
-function absurd(val: never): never {
-    throw new Error("");
-}
-
 export const createInitialState: Initializer = (options) => {
     return {
         options,
@@ -32,6 +28,10 @@ const getNewSnakePosition = (
         head: newHead,
         body: [currentSnake.head, ...currentSnake.body.slice(1)],
     };
+};
+
+const unexpectedEvent = (val: never): never => {
+    throw new Error(`Unexpected Event!`);
 };
 
 export const reduceGameEvents: Reducer = (state, event) => {
@@ -96,6 +96,6 @@ export const reduceGameEvents: Reducer = (state, event) => {
         }
 
         default:
-            return absurd(event);
+            return unexpectedEvent(event);
     }
 };
